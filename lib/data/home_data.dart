@@ -4,6 +4,6 @@ List<Home> homeData = [
   Home(
     id: 1,
     name: 'Modern Apartment',
-    imageUrl: 'https://example.com/modern_apartment.jpg',
+    icon: 'https://example.com/modern_apartment.jpg',
   ),
 ];

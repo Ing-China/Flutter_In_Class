@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:kioway/app_color.dart';
+import 'package:kioway/menu/navigation_menu.dart';
+import 'package:kioway/screens/contact_screen.dart';
 import 'package:kioway/screens/favorites.dart';
+import 'package:kioway/screens/group_screen.dart';
 import 'package:kioway/screens/new_order.dart';
 import 'package:kioway/screens/popular.dart';
+import 'package:kioway/screens/product_screen.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -17,6 +22,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         title: const Text('Home'),
         actions: [
           PopupMenuButton(
@@ -67,7 +73,7 @@ class _HomeState extends State<Home> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Favorites(),
+                      builder: (context) => const Favorites(),
                     ),
                   );
                   break;
@@ -77,40 +83,14 @@ class _HomeState extends State<Home> {
         ],
         centerTitle: false,
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const NavigationMenu(),
       body: Container(
         child: Stack(
           children: [
             Container(
               height: 80,
               decoration: const BoxDecoration(
-                color: Colors.blue,
+                color: AppColors.primaryColor,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(20),
                   bottomRight: Radius.circular(20),
@@ -118,10 +98,11 @@ class _HomeState extends State<Home> {
               ),
             ),
             ListView(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
               children: <Widget>[
                 Container(
                   height: 140,
-                  margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                  margin: const EdgeInsets.only(bottom: 10),
                   child: Card(
                     child: Stack(
                       children: <Widget>[
@@ -130,14 +111,14 @@ class _HomeState extends State<Home> {
                           child: const Text(
                             'Good Afternoon',
                             style: TextStyle(
-                                color: Colors.blue,
+                                color: AppColors.primaryColor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
                         Container(
                           margin: const EdgeInsets.fromLTRB(10, 40, 10, 10),
-                          child: const Text('BBUSR D106'),
+                          child: const Text('CHEA AKA'),
                         ),
                         Positioned(
                           left: 10,
@@ -146,7 +127,7 @@ class _HomeState extends State<Home> {
                             children: <Widget>[
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.blue,
+                                  backgroundColor: AppColors.primaryColor,
                                   shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(6),
@@ -156,7 +137,8 @@ class _HomeState extends State<Home> {
                                 onPressed: () {},
                                 child: Text(
                                   'My Order'.toUpperCase(),
-                                  style: const TextStyle(color: Colors.white),
+                                  style: const TextStyle(
+                                      color: AppColors.secondaryColor),
                                 ),
                               ),
                               const SizedBox(
@@ -164,7 +146,8 @@ class _HomeState extends State<Home> {
                               ),
                               OutlinedButton(
                                 style: OutlinedButton.styleFrom(
-                                  side: BorderSide(color: Colors.blue),
+                                  side: const BorderSide(
+                                      color: AppColors.primaryColor),
                                   shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(6),
@@ -174,7 +157,8 @@ class _HomeState extends State<Home> {
                                 onPressed: () {},
                                 child: Text(
                                   'Top New'.toUpperCase(),
-                                  style: const TextStyle(color: Colors.blue),
+                                  style: const TextStyle(
+                                      color: AppColors.primaryColor),
                                 ),
                               ),
                             ],
@@ -186,13 +170,12 @@ class _HomeState extends State<Home> {
                           bottom: 10,
                           child: CircleAvatar(
                             radius: 40,
-                            backgroundColor:
-                                const Color.fromRGBO(33, 150, 243, 1),
+                            backgroundColor: AppColors.primaryColor,
                             child: Padding(
                               padding: const EdgeInsets.all(3),
                               child: ClipOval(
                                 child: Image.asset(
-                                  'assets/images/person.png',
+                                  'assets/images/cheaAKA.JPG',
                                   fit: BoxFit.cover,
                                   width: 72,
                                   height: 72,
@@ -207,202 +190,82 @@ class _HomeState extends State<Home> {
                 ),
                 GridView.count(
                   crossAxisCount: 2,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                      child: Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(180),
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.person,
-                                size: 60,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 10.0),
-                            const Text(
-                              'CONTACTS',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                      child: Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(180),
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.group,
-                                size: 60,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              'GROUPS',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                      child: Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(180),
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.shopping_cart,
-                                size: 60,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              'PRODUCTS',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                      child: Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(180),
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.category,
-                                size: 60,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              'CATEGORIES',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                      child: Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(180),
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.question_mark,
-                                size: 60,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              'HELP',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(0, 0, 10, 10),
-                      child: Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(180),
-                                ),
-                              ),
-                              child: const Icon(
-                                Icons.settings,
-                                size: 60,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            const Text(
-                              'SETTINGS',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
+                    cardBox('CONTACT', Icons.person),
+                    cardBox('GROUPS', Icons.group),
+                    cardBox('PRODUCTS', Icons.shopping_cart),
+                    cardBox('CATEGORIES', Icons.category),
+                    cardBox('HELP', Icons.question_mark),
+                    cardBox('SETTINGS', Icons.settings),
                   ],
                 )
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget cardBox(String title, IconData icon) {
+    return Container(
+      child: Card(
+        child: InkWell(
+          onTap: () {
+            if (title == 'CONTACT') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ContactScreen(),
+                ),
+              );
+            } else if (title == 'GROUPS') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const GroupScreen(),
+                ),
+              );
+            } else if (title == 'PRODUCTS') {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProductScreen(),
+                ),
+              );
+            }
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: const BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(180),
+                  ),
+                ),
+                child: Icon(
+                  icon,
+                  size: 52,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              Text(
+                title.toUpperCase(),
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

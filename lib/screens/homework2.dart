@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kioway/screens/homework2.dart';
 
 class Homework2 extends StatefulWidget {
   const Homework2({super.key});
@@ -211,8 +209,7 @@ class _Homework2State extends State<Homework2> {
                 onPressed: () {},
                 icon: const Icon(
                   Icons.facebook, // Use the Google icon from Material Icons
-                  color: Color.fromARGB(
-                      255, 0, 140, 255), // Customize the icon color
+                  color: Color.fromARGB(255, 0, 140, 255),
                   size: 37.0,
                 ),
                 label: const Text(

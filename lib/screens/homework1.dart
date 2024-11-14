@@ -237,7 +237,8 @@ class _Homework1State extends State<Homework1> {
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => Homework2()),
+                        MaterialPageRoute(
+                            builder: (context) => const Homework2()),
                         (route) => false);
                   },
                   style: ButtonStyle(
